@@ -64,7 +64,7 @@ module.exports = function(RED) {
       var data = toArray(msg.payload);
       // 12.03.2019
       if (message.topic) {
-        this.topic = msg.topic;
+        node.topic = msg.topic;
       }
 
       device.write(data);
