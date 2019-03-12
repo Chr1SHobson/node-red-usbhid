@@ -31,9 +31,9 @@ module.exports = function(RED) {
       });
     }
 
-
+    var topic = "test";
     var node = this;
-    var topic = "";
+   
 
     if (device) {
       
@@ -43,7 +43,7 @@ module.exports = function(RED) {
           topic: ""
         };
         message.payload = data;
-        message.topic = topic;
+        message.topic = node.topic;
         node.send([message, null]);
       });
 
@@ -53,7 +53,7 @@ module.exports = function(RED) {
           topic: ""
         };
         message.payload = err;
-        message.topic = topic;
+        message.topic = node.topic;
         node.send([null, message]);
       });
       
