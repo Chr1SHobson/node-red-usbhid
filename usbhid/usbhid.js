@@ -34,7 +34,7 @@ module.exports = function(RED) {
 
     var node = this;
 
-    var topic = "";
+    //var topic = "";
 
 
     device.on("data", function(data) {
