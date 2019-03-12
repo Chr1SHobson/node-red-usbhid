@@ -33,26 +33,35 @@ module.exports = function(RED) {
 
 
     var node = this;
+    var topic = "";
 
-    device.on("data", function(data) {
-      var message = {
-        payload: ""
-      };
-      message.payload = data;
-      node.send([message, null]);
-    });
+    if (device) {
+      
+      device.on("data", function(data) {
+        var message = {
+          payload: "",
+          topic: ""
+        };
+        message.payload = data;
+        message.topic = topic;
+        node.send([message, null]);
+      });
 
-
-    device.on("error", function(err) {
-      var message = {
-        payload: ""
-      };
-      message.payload = err;
-      node.send([null, message]);
-    });
+      device.on("error", function(err) {
+        var message = {
+          payload: "",
+          topic: ""
+        };
+        message.payload = err;
+        message.topic = topic;
+        node.send([null, message]);
+      });
+      
+    }
 
     this.on('input', function(msg) {
       var data = toArray(msg.payload);
+      topic = msg.topic;
       device.write(data);
 
     });
