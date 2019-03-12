@@ -45,9 +45,9 @@ module.exports = function(RED) {
       };
       message.payload = data;
       // 12.03.2019
-      if (topic) {
-        message.topic = topic;
-      }
+     // if (topic) {
+       // message.topic = topic;
+      //}
       node.send([message, null]);
     });
 
@@ -65,9 +65,9 @@ module.exports = function(RED) {
 
       var data = toArray(msg.payload);
       // 12.03.2019
-      if (message.topic) {
-        topic = msg.topic;
-      }
+    //  if (message.topic) {
+    //    topic = msg.topic;
+    //  }
 
       device.write(data);
 
