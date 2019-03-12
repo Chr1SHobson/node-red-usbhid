@@ -39,9 +39,7 @@ module.exports = function(RED) {
 
     device.on("data", function(data) {
       var message = {
-        payload: "", 
-        // 12.03.2019
-        topic: ""
+        payload: ""
       };
       message.payload = data;
       // 12.03.2019
