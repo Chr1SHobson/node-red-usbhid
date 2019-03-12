@@ -37,9 +37,15 @@ module.exports = function(RED) {
 
     device.on("data", function(data) {
       var message = {
-        payload: ""
+        payload: "", 
+        // 12.03.2019
+        topic: ""
       };
       message.payload = data;
+      // 12.03.2019
+      if (node.topic) {
+        message.topic = node.topic;
+      }
       node.send([message, null]);
     });
 
@@ -56,6 +62,10 @@ module.exports = function(RED) {
 
 
       var data = toArray(msg.payload);
+      // 12.03.2019
+      if (message.topic) {
+        var node.topic = msg.topic;
+      }
 
       device.write(data);
 
