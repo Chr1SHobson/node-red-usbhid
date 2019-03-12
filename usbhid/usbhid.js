@@ -34,6 +34,8 @@ module.exports = function(RED) {
 
     var node = this;
 
+    var topic = "";
+
 
     device.on("data", function(data) {
       var message = {
@@ -43,8 +45,8 @@ module.exports = function(RED) {
       };
       message.payload = data;
       // 12.03.2019
-      if (node.topic) {
-        message.topic = node.topic;
+      if (topic) {
+        message.topic = topic;
       }
       node.send([message, null]);
     });
@@ -64,7 +66,7 @@ module.exports = function(RED) {
       var data = toArray(msg.payload);
       // 12.03.2019
       if (message.topic) {
-        node.topic = msg.topic;
+        topic = msg.topic;
       }
 
       device.write(data);
